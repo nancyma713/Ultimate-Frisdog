@@ -39,6 +39,12 @@ This project will be implemented with the following technologies:
 - JavaScript for game logic
 - HTML5 Canvas to render the game
 
+Main scripts will include:
+- ```game.js```: holds game logic - will create and update the game
+- ```corgi.js```: constructs the ```Corgi``` object
+- ```tree.js```: constructs stationary ```Tree``` obstacle object
+- ```dog.js```: constructs moving ```Dog``` obstacle object
+
 ## Implementation Timeline
 
 **Day 1**: Set up basic files, research and familiarize with Canvas. Create
