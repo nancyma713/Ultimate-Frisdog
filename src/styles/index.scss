@@ -1,0 +1,74 @@
+@import './reset.scss';
+
+body {
+    background-color: #D8AE87;
+}
+
+.outer-container {
+    font-family: 'Wendy One', sans-serif;
+    margin: 2%;
+}
+
+.outer-container h1 {
+    font-size: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.main-container {
+    display: flex;
+}
+
+.left {
+    background-color: white;
+    padding: 10px;
+    flex: 2;
+    margin-right: 20px;
+}
+
+.left h3 {
+    font-size: 25px;
+}
+
+.left p {
+    padding-top: 15px;
+}
+
+.high-scores h3 {
+    padding-top: 25px;
+}
+
+.game-screen {
+    flex: 7;
+    margin-right: 20px;
+
+}
+
+.right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.right a {
+    text-decoration: none;
+    font-size: 50px;
+    padding: 10px;
+    color: black;
+    align-self: center;
+}
+
+.right img {
+    align-self: center;
+    width: 70px;
+    height: 70px;
+}
+
+.right a:hover {
+    color: white;
+}
+
+#canvas-dog-park {
+    background-image: linear-gradient(to right, #98ec9f,#70e77c, #58d362, #3ac445, #25b931, #1a9b25);
+
+}
