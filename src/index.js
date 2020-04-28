@@ -9,4 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let game = new Game(ctx, canvas);
     // let gameLoop = new GameLoop(game, canvas);
+
+    
 })
