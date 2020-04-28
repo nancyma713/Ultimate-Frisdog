@@ -35,6 +35,7 @@ class Corgi {
         this.ctx.drawImage(this.image, this.mousePos.x, this.mousePos.y, this.width, this.height);
         // debugger
     }
+
 }
 
 

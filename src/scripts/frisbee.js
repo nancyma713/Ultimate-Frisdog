@@ -8,16 +8,18 @@ class Frisbee {
             x: frisbeeRadius,
             y: Math.floor(Math.random() * 550 + 50)
         }
-        // let x = frisbeeRadius;
-        // this.x = x;
-        // let y = Math.floor(Math.random() * 600);
-        // this.y = y;
 
-        const dx = 1;
-        this.dx = dx;
-        const dy = Math.random() * (-1);
-        // const dy = -0.5;
-        this.dy = dy;
+        this.frisbeeMove = {
+            dx: 1,
+            dy: Math.random() * (1) + (-0.5)
+        }
+        
+
+        // const dx = 1;
+        // this.dx = dx;
+        // let dy = Math.random() * (1) + (-0.5);
+        // // const dy = -0.5;
+        // this.dy = dy;
 
         this.drawFrisbee();
     }
@@ -29,15 +31,21 @@ class Frisbee {
         this.ctx.fill();
         this.ctx.closePath();
 
-        this.frisbeePos.x += this.dx;
-        this.frisbeePos.y += this.dy;
+        this.frisbeePos.x += this.frisbeeMove.dx;
+        this.frisbeePos.y += this.frisbeeMove.dy;
 
-        if (this.frisbeePos.y + this.dy > 650 || this.frisbeePos.y + this.dy < 50) {
-            this.dy = -this.dy;
+        if (this.frisbeePos.y + this.frisbeeMove.dy > 550 || this.frisbeePos.y + this.frisbeeMove.dy < 50) {
+            this.frisbeeMove.dy = -(this.frisbeeMove.dy / 2);
         }
-        // if (this.y + this.dy < this.frisbeeRadius) {
-        //     this.dy = -this.dy;
-        // }
+    }
+
+    reset() {
+        this.frisbeePos.x = this.frisbeeRadius;
+        this.frisbeePos.y = Math.floor(Math.random() * 550 + 50);
+        this.frisbeeMove.dy = Math.random() * (1) + (-0.5);
+        // debugger
+        this.frisbeeMove.dx = 1
+        // debugger
     }
 
 }

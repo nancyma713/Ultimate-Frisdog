@@ -1,5 +1,5 @@
-import Corgi from "./corgi";
 import Dog from "./dog";
+import Corgi from "./corgi";
 import Frisbee from "./frisbee";
 import Tree from "./tree";
 
@@ -17,14 +17,14 @@ class Game {
         this.player = player;
 
         this.draw = this.draw.bind(this);
-        this.start();
+        this.draw();
 
     }
     
-    start() {
-        this.score = 0;
-        this.draw();
-    }
+    // start() {
+    //     this.score = 0;
+    //     this.draw();
+    // }
     
     draw() {
         this.ctx.clearRect(0, 0, 900, 600);
@@ -34,8 +34,20 @@ class Game {
         this.drawScore();
         this.drawLives();
         this.frisbeeCollision();
+        this.stopGame();
+        if (this.lives === 0 || this.frisbee.frisbeePos.x > 905) {
+            this.gameOver = true;
+        }
 
         requestAnimationFrame(this.draw);
+    }
+
+    stopGame() {
+        if (this.gameOver) {
+            this.ctx.font = "30px Wendy One";
+            this.ctx.fillStyle = "black";
+            this.ctx.fillText("Time to go home!", 330, 300);
+        }
     }
 
     drawScore() {
@@ -50,31 +62,25 @@ class Game {
         this.ctx.fillText("Lives: " + this.lives, 100, 20);
     }
 
-    frisbeeCollision() {
-        // if ((this.player.mousePos.x >= this.frisbee.frisbeePos.x && this.frisbee.frisbeePos.x - 10 > this.player.mousePos.x) && (this.frisbee.frisbeePos.y >= this.player.mousePos.y - 10 && this.player.mousePos.y >= this.frisbee.frisbeePos.y)) {
-        //     this.score++;
-        //     this.draw();
-        // } else if ((this.frisbee.frisbeePos.x >= this.player.mousePos.x && this.player.mousePos.x - 10 >= this.frisbee.frisbeePos.x) &&
-        //     (this.frisbee.frisbeePos.y - 10 >= this.player.mousePos.y && this.player.mousePos.y >= this.frisbee.frisbeePos.y)) {
-        //     this.score++;
-        //     this.draw();
-        // } else if ((this.player.mousePos.x >= this.frisbee.frisbeePos.x && this.frisbee.frisbeePos.x + 10 > this.player.mousePos.x) && (this.frisbee.frisbeePos.y >= this.player.mousePos.y + 10 && this.player.mousePos.y >= this.frisbee.frisbeePos.y)) {
-        //     this.score++;
-        //     this.draw();
-        // } else if ((this.frisbee.frisbeePos.x >= this.player.mousePos.x && this.player.mousePos.x + 10 >= this.frisbee.frisbeePos.x) &&
-        //     (this.frisbee.frisbeePos.y + 10 >= this.player.mousePos.y && this.player.mousePos.y >= this.frisbee.frisbeePos.y)) {
-        //     this.score++;
-        //     this.draw();
-        // } 
+    // obstacleCollision() {
+    //     if ((this.player.mousePos.x > this.tree.treePos.x - 50
+    //         && this.player.mousePos.x < this.tree.treePos.x + 10) &&
+    //         (this.player.mousePos.y > this.tree.treePos.y - 50
+    //             && this.player.mousePos.y < this.tree.treePos.y + 10)) {
+    //                 this.lives--;
+    //                 this.frisbee.reset();
+    //                 this.draw();
+    //             }
+    // }
 
+    frisbeeCollision() {
         if ((this.player.mousePos.x > this.frisbee.frisbeePos.x - 50
-                && this.player.mousePos.x < this.frisbee.frisbeePos.x + 10) && 
+                && this.player.mousePos.x < this.frisbee.frisbeePos.x + 5) && 
             (this.player.mousePos.y > this.frisbee.frisbeePos.y - 50
-                && this.player.mousePos.y < this.frisbee.frisbeePos.y + 10)) {
+                && this.player.mousePos.y < this.frisbee.frisbeePos.y + 5)) {
             
-            this.frisbee.frisbeePos.x = 8;
-            this.frisbee.frisbeePos.y = Math.floor(Math.random() * 550 + 50);
             this.score++;
+            this.frisbee.reset();
             this.draw();
         }
     }
