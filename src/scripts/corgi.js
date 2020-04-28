@@ -1,22 +1,33 @@
 class Corgi {
     constructor(ctx) {
         this.ctx = ctx;
-        const image = new Image;
+        const image = new Image();
         image.src ='src/assets/images/corgi.gif';
         this.image = image;
-        this.height = 50;
-        this.width = 50;
-        this.startPos = {
-            x: 10,
-            y: 10
-        };
+        this.height = 70;
+        this.width = 70;
+        this.mousePos = {
+            x: 0,
+            y: 0
+        }
         
-        this.drawCorgi = this.drawCorgi.bind(this);
-        this.drawCorgi();
+        image.onload = () => {
+            this.drawCorgi();
+        }
+
+        document.addEventListener("mousemove", e => {
+            this.mousePos.x = e.clientX
+            this.mousePos.y = e.clientY
+        });
     }
 
+    // mouseMoveHandler(e) {
+    //     const relativeX = e.clientX;
+    //     const relativeY = e.clientY;
+    // }
+
     drawCorgi() {
-        ctx.drawImage(this.image, 10, 10, this.width, this.height);
+        this.ctx.drawImage(this.image, 50, 300, this.width, this.height);
     }
 }
 
