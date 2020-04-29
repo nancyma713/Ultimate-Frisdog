@@ -16,10 +16,6 @@ class Tree {
         }
     }
 
-    getXPos() {
-        if (this.xPos) return this.xPos;
-    }
-
     drawTree() {
         this.ctx.drawImage(this.image, this.treePos.x, this.treePos.y, this.width, this.height);
     }

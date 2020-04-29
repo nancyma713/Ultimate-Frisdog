@@ -14,13 +14,6 @@ class Frisbee {
             dy: Math.random() * (1) + (-0.5)
         }
         
-
-        // const dx = 1;
-        // this.dx = dx;
-        // let dy = Math.random() * (1) + (-0.5);
-        // // const dy = -0.5;
-        // this.dy = dy;
-
         this.drawFrisbee();
     }
     

@@ -17,6 +17,7 @@ body {
 
 .main-container {
     display: flex;
+    position: relative;
 }
 
 .left {
@@ -70,5 +71,22 @@ body {
 
 #canvas-dog-park {
     background-image: linear-gradient(to right, #98ec9f,#70e77c, #58d362, #3ac445, #25b931, #1a9b25);
+}
 
+.open-modal {
+    background-color: cornflowerblue;
+    opacity: 0.5;
+    position: absolute;
+    width: 900px;
+    height: 600px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-size: 40px;
+}
+
+.close-modal {
+    display: none;
 }

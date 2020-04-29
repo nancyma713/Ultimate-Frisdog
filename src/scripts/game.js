@@ -5,69 +5,91 @@ import Tree from "./tree";
 import BorderCollie from "./border-collie";
 import Husky from "./husky";
 import Shiba from "./shiba";
+import Difficulty from './difficulty';
 
 class Game {
     constructor(ctx, canvas) {
         this.ctx = ctx;
         this.canvas = canvas;
         this.score = 0;
-        this.lives = 3;
+        this.frisbees = 3;
         this.gameOver = false;
+        this.difficulty = {
+            easy: { trees: 1, dogs: 2 },
+            medium: { trees: 2, dogs: 3 },
+            hard: { trees: 3, dogs: 4} 
+        };
         
         let frisbee = new Frisbee(this.ctx);
         this.frisbee = frisbee;
         let player = new Corgi(this.ctx, this.canvas);
         this.player = player;
-        let tree1 = new Tree(this.ctx);
-        this.tree1 = tree1;
-        let tree2 = new Tree(this.ctx);
-        this.tree2 = tree2;
-        let tree3 = new Tree(this.ctx);
-        this.tree3 = tree3;
+
+        let dogs = [];
+        this.dogs = dogs;
+        // for (let i = 0; i < this.difficulty.hard.dogs; i++) {
+        //     this.dogs.push(new Shiba(this.ctx));
+        // };
+
         let borderCollie = new BorderCollie(this.ctx);
         this.borderCollie = borderCollie;
+        dogs.push(this.borderCollie);
         let husky = new Husky(this.ctx);
         this.husky = husky;
+        dogs.push(this.husky);
         let shiba = new Shiba(this.ctx);
         this.shiba = shiba;
+        dogs.push(this.shiba);
+
+        let trees = [];
+        this.trees = trees;
+        for (let i = 0; i < this.difficulty.hard.trees; i++) {
+            this.trees.push(new Tree(this.ctx));
+        };
 
         this.draw = this.draw.bind(this);
-        this.draw();
-
+        // this.draw();
+        this.start = this.start.bind(this);
     }
     
-    // start() {
-    //     this.score = 0;
-    //     this.draw();
-    // }
+    start() {
+        this.score = 0;
+        this.draw();
+    }
+
+    drawTrees() {
+        for (let i = 0; i < this.trees.length; i++) {
+            this.trees[i].drawTree();
+        }
+    }
     
     draw() {
         this.ctx.clearRect(0, 0, 900, 600);
+        this.drawTrees();
         this.frisbee.drawFrisbee();
-        this.player.drawCorgi();
-        this.tree1.drawTree();
-        this.tree2.drawTree();
-        this.tree3.drawTree();
         this.borderCollie.render();
         this.husky.render();
         this.shiba.render();
-        // this.player.update(this.ctx);
+        this.player.drawCorgi();
         this.drawScore();
         this.drawLives();
-        this.frisbeeCollision();
+        this.didCollide();
+        this.lostFrisbee();
         this.stopGame();
-        if (this.lives === 0 || this.frisbee.frisbeePos.x > 905) {
+        if (this.frisbees === 0) {
             this.gameOver = true;
         }
-
-        requestAnimationFrame(this.draw);
+        
+        this.game = requestAnimationFrame(this.draw);
     }
-
+    
     stopGame() {
         if (this.gameOver) {
+            this.frisbees = 0;
             this.ctx.font = "30px Wendy One";
             this.ctx.fillStyle = "black";
             this.ctx.fillText("Time to go home!", 330, 300);
+            cancelAnimationFrame(this.game);
         }
     }
 
@@ -80,29 +102,57 @@ class Game {
     drawLives() {
         this.ctx.font = "16px Wendy One";
         this.ctx.fillStyle = "black";
-        this.ctx.fillText("Lives: " + this.lives, 100, 20);
+        this.ctx.fillText("Frisbees Left: " + this.frisbees, 100, 20);
     }
 
-    // obstacleCollision() {
-    //     if ((this.player.mousePos.x > this.tree.treePos.x - 50
-    //         && this.player.mousePos.x < this.tree.treePos.x + 10) &&
-    //         (this.player.mousePos.y > this.tree.treePos.y - 50
-    //             && this.player.mousePos.y < this.tree.treePos.y + 10)) {
-    //                 this.lives--;
-    //                 this.frisbee.reset();
-    //                 this.draw();
-    //             }
-    // }
+    lostFrisbee() {
+        if (this.frisbee.frisbeePos.x > 905) {
+            this.frisbees--;
+            this.frisbee.reset();
+            this.player.resetCorgi();
+            setTimeout(this.draw, 500);
+        }
+    }
+
+    didCollide() {
+        if (this.frisbeeCollision()) {
+            this.score++;
+            this.frisbee.reset();
+            this.player.resetCorgi();
+            setTimeout(this.draw, 1500);
+            // this.draw();
+        }
+        
+        if (this.obstacleCollision()) {
+            this.gameOver = true;
+        }
+    }
+
+    obstacleCollision() {
+        for (let i = 0; i < this.trees.length; i++) {
+            if ((this.player.mousePos.x > this.trees[i].treePos.x - 20
+                && this.player.mousePos.x < this.trees[i].treePos.x + 5) &&
+                (this.player.mousePos.y > this.trees[i].treePos.y - 20
+                    && this.player.mousePos.y < this.trees[i].treePos.y + 5)) {
+                        return true;
+                    }
+        }
+        for (let i = 0; i < this.dogs.length; i++) {
+            if ((this.player.mousePos.x > this.dogs[i].xPos - 20
+                && this.player.mousePos.x < this.dogs[i].xPos + 5) &&
+                (this.player.mousePos.y > this.dogs[i].yPos - 20
+                && this.player.mousePos.y < this.dogs[i].yPos + 5)) {
+                return true;
+            }
+        }
+    }
 
     frisbeeCollision() {
         if ((this.player.mousePos.x > this.frisbee.frisbeePos.x - 50
                 && this.player.mousePos.x < this.frisbee.frisbeePos.x + 10) && 
             (this.player.mousePos.y > this.frisbee.frisbeePos.y - 50
                 && this.player.mousePos.y < this.frisbee.frisbeePos.y + 10)) {
-            
-            this.score++;
-            this.frisbee.reset();
-            this.draw();
+            return true;
         }
     }
 }

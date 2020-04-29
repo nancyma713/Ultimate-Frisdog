@@ -19,6 +19,11 @@ class Corgi {
         this.mouseMoveHandler();
     }
 
+    resetCorgi() {
+        this.mousePos.x = 0;
+        this.mousePos.y = 300;
+    }
+
     mouseMoveHandler() {
         this.canvas.addEventListener('mousemove',
             (e) => {
