@@ -2,6 +2,9 @@ import Dog from "./dog";
 import Corgi from "./corgi";
 import Frisbee from "./frisbee";
 import Tree from "./tree";
+import BorderCollie from "./border-collie";
+import Husky from "./husky";
+import Shiba from "./shiba";
 
 class Game {
     constructor(ctx, canvas) {
@@ -15,6 +18,18 @@ class Game {
         this.frisbee = frisbee;
         let player = new Corgi(this.ctx, this.canvas);
         this.player = player;
+        let tree1 = new Tree(this.ctx);
+        this.tree1 = tree1;
+        let tree2 = new Tree(this.ctx);
+        this.tree2 = tree2;
+        let tree3 = new Tree(this.ctx);
+        this.tree3 = tree3;
+        let borderCollie = new BorderCollie(this.ctx);
+        this.borderCollie = borderCollie;
+        let husky = new Husky(this.ctx);
+        this.husky = husky;
+        let shiba = new Shiba(this.ctx);
+        this.shiba = shiba;
 
         this.draw = this.draw.bind(this);
         this.draw();
@@ -30,6 +45,12 @@ class Game {
         this.ctx.clearRect(0, 0, 900, 600);
         this.frisbee.drawFrisbee();
         this.player.drawCorgi();
+        this.tree1.drawTree();
+        this.tree2.drawTree();
+        this.tree3.drawTree();
+        this.borderCollie.render();
+        this.husky.render();
+        this.shiba.render();
         // this.player.update(this.ctx);
         this.drawScore();
         this.drawLives();
@@ -75,9 +96,9 @@ class Game {
 
     frisbeeCollision() {
         if ((this.player.mousePos.x > this.frisbee.frisbeePos.x - 50
-                && this.player.mousePos.x < this.frisbee.frisbeePos.x + 5) && 
+                && this.player.mousePos.x < this.frisbee.frisbeePos.x + 10) && 
             (this.player.mousePos.y > this.frisbee.frisbeePos.y - 50
-                && this.player.mousePos.y < this.frisbee.frisbeePos.y + 5)) {
+                && this.player.mousePos.y < this.frisbee.frisbeePos.y + 10)) {
             
             this.score++;
             this.frisbee.reset();
