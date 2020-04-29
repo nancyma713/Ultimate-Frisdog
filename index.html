@@ -17,10 +17,10 @@
                 <div class="instructions">
                     <h3>How To Play</h3>
                     <p>You're out at the dog park with your human and want to show off your frisbee-catching skills despite your short legs!</p>
-
-                    <p>Catch as many frisbees as possible or else your human will want to go home. Avoid other dogs and obstacles in the dog park as you run, but don't let it fly out of the dog park or a car will run over your precious toy.</p>
-        
-                    <p>You have three chances not to collide with any obstacles. If the frisbee flies out of the dog park, it's game over!</p>
+                    
+                    <p>Catch as many frisbees as possible or else your human will want to go home. Avoid other dogs and obstacles in the park, and don't let your frisbee fly out to the left or a car will run over your precious toy. Mysterious winds blow from north and south of the park, so watch out!</p>
+                    
+                    <p>You only have three frisbees. If you run into a tree or another dog, it's game over!</p>
                 </div>
                 <div class="high-scores">
                     <h3>High Scores</h3>
@@ -29,10 +29,25 @@
                     </ul>
                 </div>
             </aside>
-    
+            
             <main class="game-screen">
+                <div id='modal' class='open-modal'>
+                    <i class="fas fa-bone"></i>
+                    <p class="check-instr"><i class="fas fa-arrow-left"></i>Check out the instructions!</p>
+                    <p class="check-instr">and then...</p>
+                    <div id="click-start">
+                        <i class="fas fa-paw"></i> CLICK TO GO TO THE PARK!<i class="fas fa-paw"></i>
+                    </div>
+                        <i class="fas fa-bone"></i>
+                </div>
+                <div id='gameover-modal' class='close-modal'>
+                    <p>Time to go home for today!</p>
+                    </br>
+                    <i class="fas fa-paw"></i>
+                    </br>
+                    <p>Click to fast-forward to tomorrow and play again! </p>
+                </div>
                 <canvas id="canvas-dog-park" width="900" height="600"></canvas>
-                <div id='modal' class='open-modal'>CLICK TO PLAY</div>
             </main>
     
             <div class="right">

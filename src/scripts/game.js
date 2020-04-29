@@ -49,12 +49,32 @@ class Game {
 
         this.draw = this.draw.bind(this);
         // this.draw();
-        this.start = this.start.bind(this);
+        // this.start = this.start.bind(this);
+        this.setupControls();
+    }
+
+    setupControls() {
+        this.modalEl = document.getElementById('modal');
+        this.modalEl.onclick = this.clickModalStart.bind(this);
+
+        this.gameOverModal = document.getElementById('gameover-modal');
+        // this.gameOverModal.onclick = this.clickModalRestart.bind(this);
+    }
+
+    clickModalStart(e) {
+        e.preventDefault();
+        this.modalEl.classList.remove('open-modal');
+        this.modalEl.classList.add('close-modal');
+        this.modalEl.onclick = e => e.preventDefault();
+        this.draw();
     }
     
-    start() {
-        this.score = 0;
-        this.draw();
+    stopGame() {
+        if (this.gameOver) {
+            this.gameOverModal.classList.remove('close-modal');
+            this.gameOverModal.classList.add('open-modal');
+            // this.gameOverModal.onclick = e => e.preventDefault();
+        }
     }
 
     drawTrees() {
@@ -81,16 +101,6 @@ class Game {
         }
         
         this.game = requestAnimationFrame(this.draw);
-    }
-    
-    stopGame() {
-        if (this.gameOver) {
-            this.frisbees = 0;
-            this.ctx.font = "30px Wendy One";
-            this.ctx.fillStyle = "black";
-            this.ctx.fillText("Time to go home!", 330, 300);
-            cancelAnimationFrame(this.game);
-        }
     }
 
     drawScore() {

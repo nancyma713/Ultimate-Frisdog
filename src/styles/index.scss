@@ -22,17 +22,19 @@ body {
 
 .left {
     background-color: white;
-    padding: 10px;
+    padding: 15px;
     flex: 2;
     margin-right: 20px;
 }
 
 .left h3 {
-    font-size: 25px;
+    color: rgb(184, 140, 99);
+    font-size: 30px;
 }
 
 .left p {
     padding-top: 15px;
+    font-size: 18px;
 }
 
 .high-scores h3 {
@@ -57,6 +59,7 @@ body {
     padding: 10px;
     color: black;
     align-self: center;
+    transition: 0.5s;
 }
 
 .right img {
@@ -66,7 +69,7 @@ body {
 }
 
 .right a:hover {
-    color: white;
+    color: snow;
 }
 
 #canvas-dog-park {
@@ -74,8 +77,9 @@ body {
 }
 
 .open-modal {
-    background-color: cornflowerblue;
-    opacity: 0.5;
+    display: flex;
+    flex-direction: column;
+    background-image: linear-gradient(to right, #98ec9f,#70e77c, #58d362, #3ac445, #25b931, #1a9b25);
     position: absolute;
     width: 900px;
     height: 600px;
@@ -83,10 +87,47 @@ body {
     text-align: center;
     justify-content: center;
     align-items: center;
-    color: black;
-    font-size: 40px;
+    color: snow;
+    font-size: 50px;
+    z-index: 100;
 }
 
 .close-modal {
     display: none;
+}
+
+.fa-paw {
+    padding: 0px 10px;
+    font-size: 30px;
+}
+
+.fa-bone {
+    margin: 80px 0px;
+    font-size: 100px;
+    color: rgba(255, 255, 255, 0.397);
+    transition: 0.5s;
+}
+
+.fa-bone:hover {
+    color: rgba(255, 255, 255, 0.759);
+}
+
+.fa-arrow-left {
+    padding-right: 10px;
+}
+
+.check-instr {
+    margin-bottom: 30px;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.623);
+}
+
+#click-start {
+    padding: 30px;
+    transition: 0.7s;
+}
+
+#click-start:hover {
+    color: black;
+    cursor: pointer;
 }
