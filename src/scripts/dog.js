@@ -40,8 +40,8 @@ class Dog {
     }
 
     randomMove() {
-        let dx = Math.random() * 10 - 5;
-        let dy = Math.random() * 10 - 5;
+        let dx = Math.random() * 6 - 3;
+        let dy = Math.random() * 6 - 3;
         if (this.checkValidMove(dx, dy)) {
             this.move(dx, dy);
         } else {

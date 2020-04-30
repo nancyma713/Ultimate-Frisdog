@@ -143,7 +143,7 @@ body {
     flex-direction: column;
     margin: 20px 0px 50px 0px;
     box-shadow: 3px 3px 5px;
-    background-image: linear-gradient(to right, rgb(170, 170, 170), rgb(120, 120, 120), rgb(90, 90, 90), rgb(60, 60, 60), rgb(30, 30, 30), rgb(0, 0, 0));
+    background-image: linear-gradient(to right,rgb(211, 156, 104), rgb(209, 146, 87), rgb(196, 128, 64), rgb(190, 113, 41),  rgb(161, 103, 49), rgb(134, 79, 28));
 }
 
 .difficulty-mode button {
@@ -154,11 +154,11 @@ body {
 }
 
 .difficulty-mode button:hover {
-    color: rgb(211, 156, 104);
+    color: black;
     cursor: pointer;
 }
 
 .difficulty-mode button:focus {
-    color: rgb(211, 156, 104);
+    color: black;
     cursor: pointer;
 }
