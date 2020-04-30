@@ -48,39 +48,56 @@ class Game {
         };
 
         this.draw = this.draw.bind(this);
-        // this.draw();
-        // this.start = this.start.bind(this);
+        this.clickModalStart = this.clickModalStart.bind(this);
+        this.stopGame = this.stopGame.bind(this);
         this.setupControls();
     }
 
     setupControls() {
-        this.modalEl = document.getElementById('modal');
-        this.modalEl.onclick = this.clickModalStart.bind(this);
+        this.startModal = document.getElementById('modal');
+        this.startModal.onclick = this.clickModalStart.bind(this);
 
-        this.gameOverModal = document.getElementById('gameover-modal');
+        // this.gameOverModal = document.getElementById('gameover-modal');
         // this.gameOverModal.onclick = this.clickModalRestart.bind(this);
     }
 
     clickModalStart(e) {
         e.preventDefault();
-        this.modalEl.classList.remove('open-modal');
-        this.modalEl.classList.add('close-modal');
-        this.modalEl.onclick = e => e.preventDefault();
+        this.score = 0;
+        this.frisbees = 3;
+        this.gameOver = false;
+        this.startModal.classList.remove('open-modal');
+        this.startModal.classList.add('close-modal');
+        this.startModal.onclick = e => e.preventDefault();
         this.draw();
     }
-    
+
+    // clickModalRestart(e) {
+    //     e.preventDefault();
+    //     this.startModal.classList.remove('close-modal');
+    //     this.startModal.classList.add('open-modal');
+    //     this.gameOverModal.classList.remove('open-modal');
+    //     this.gameOverModal.classList.add('close-modal');
+    //     this.startModal.onclick = e => e.preventDefault();
+    //     this.draw();
+    // }
+
     stopGame() {
         if (this.gameOver) {
-            this.gameOverModal.classList.remove('close-modal');
-            this.gameOverModal.classList.add('open-modal');
-            // this.gameOverModal.onclick = e => e.preventDefault();
-        }
+            this.startModal.innerHTML = "Time to go home for today! Click to fast-forward to tomorrow and play again!"
+            this.startModal.classList.remove('close-modal');
+            this.startModal.classList.add('open-modal');
+            // this.gameOverModal.classList.remove('close-modal');
+            // this.gameOverModal.classList.add('open-modal');
+            this.ctx.clearRect(0, 0, 900, 600);
+            this.startModal.onclick = this.clickModalStart.bind(this);
+        };
     }
 
     drawTrees() {
         for (let i = 0; i < this.trees.length; i++) {
             this.trees[i].drawTree();
-        }
+        };
     }
     
     draw() {
@@ -119,7 +136,7 @@ class Game {
         if (this.frisbee.frisbeePos.x > 905) {
             this.frisbees--;
             this.frisbee.reset();
-            this.player.resetCorgi();
+            // this.player.resetCorgi();
             setTimeout(this.draw, 500);
         }
     }
@@ -128,7 +145,7 @@ class Game {
         if (this.frisbeeCollision()) {
             this.score++;
             this.frisbee.reset();
-            this.player.resetCorgi();
+            // this.player.resetCorgi();
             setTimeout(this.draw, 1500);
             // this.draw();
         }

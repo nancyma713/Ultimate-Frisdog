@@ -29,7 +29,7 @@ class Corgi {
             (e) => {
                 // debugger
                 this.mousePos.x = e.clientX - this.canvas.offsetLeft - 80;
-                this.mousePos.y = e.clientY - this.canvas.offsetTop - 100;
+                this.mousePos.y = e.clientY - this.canvas.offsetTop - 80;
                 // debugger
                 
                 this.drawCorgi();
