@@ -14,7 +14,7 @@ class Frisbee {
             dy: Math.random() * (1) + (-0.5)
         }
         
-        this.drawFrisbee();
+        // this.drawFrisbee();
     }
     
     drawFrisbee() {
@@ -28,8 +28,9 @@ class Frisbee {
         this.frisbeePos.y += this.frisbeeMove.dy;
 
         if (this.frisbeePos.y + this.frisbeeMove.dy > 550 || this.frisbeePos.y + this.frisbeeMove.dy < 50) {
-            this.frisbeeMove.dy = -(this.frisbeeMove.dy / 2);
+            this.frisbeeMove.dy = -(this.frisbeeMove.dy / 10);
         }
+
     }
 
     reset() {

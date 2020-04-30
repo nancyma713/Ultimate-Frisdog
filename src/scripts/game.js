@@ -87,6 +87,7 @@ class Game {
     
     draw() {
         this.ctx.clearRect(0, 0, 900, 600);
+        this.game = requestAnimationFrame(this.draw);
         this.drawTrees();
         this.frisbee.drawFrisbee();
         this.borderCollie.render();
@@ -102,7 +103,6 @@ class Game {
             this.gameOver = true;
         }
         
-        this.game = requestAnimationFrame(this.draw);
     }
 
     drawScore() {

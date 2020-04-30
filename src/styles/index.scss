@@ -20,6 +20,11 @@ body {
     position: relative;
 }
 
+.corgi-images {
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .left {
     background-color: white;
     padding: 15px;
@@ -60,6 +65,7 @@ body {
     color: black;
     align-self: center;
     transition: 0.5s;
+    cursor: pointer;
 }
 
 .right img {
@@ -129,5 +135,25 @@ body {
 
 #click-start:hover {
     color: black;
+    cursor: pointer;
+}
+
+.difficulty-mode {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0px 50px 0px;
+    box-shadow: 3px 3px 5px;
+    background-image: linear-gradient(to right, rgb(170, 170, 170), rgb(120, 120, 120), rgb(90, 90, 90), rgb(60, 60, 60), rgb(30, 30, 30), rgb(0, 0, 0));
+}
+
+.difficulty-mode button {
+    padding: 10px;
+    font-size: 20px;
+    color: white;
+    transition: 0.5s;
+}
+
+.difficulty-mode button:hover {
+    color: rgb(211, 156, 104);
     cursor: pointer;
 }
