@@ -6,7 +6,7 @@ class Frisbee {
 
         this.frisbeePos = {
             x: frisbeeRadius,
-            y: Math.floor(Math.random() * 550 + 50)
+            y: Math.floor(Math.random() * 500 + 50)
         }
 
         this.frisbeeMove = {
@@ -33,7 +33,7 @@ class Frisbee {
 
     reset() {
         this.frisbeePos.x = this.frisbeeRadius;
-        this.frisbeePos.y = Math.floor(Math.random() * 550 + 50);
+        this.frisbeePos.y = Math.floor(Math.random() * 500 + 50);
         this.frisbeeMove.dy = Math.random() * (1) + (-0.5);
         // debugger
         this.frisbeeMove.dx = 1

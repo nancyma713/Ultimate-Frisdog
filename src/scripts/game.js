@@ -4,7 +4,12 @@ import Tree from "./tree";
 import BorderCollie from "./border-collie";
 import Husky from "./husky";
 import Shiba from "./shiba";
-import Difficulty from './difficulty';
+
+const DIFFICULTY = {
+    easy: { trees: 1, dogs: 2 },
+    medium: { trees: 2, dogs: 3 },
+    hard: { trees: 3, dogs: 4 }
+}
 
 class Game {
     constructor(ctx, canvas) {
@@ -14,11 +19,6 @@ class Game {
         this.frisbees = 3;
         this.gameOver = false;
 
-        const DIFFICULTY = {
-            easy: { trees: 1, dogs: 2 },
-            medium: { trees: 2, dogs: 3 },
-            hard: { trees: 3, dogs: 4 }
-        }
         this.difficulty = DIFFICULTY.hard;
         
         let frisbee = new Frisbee(this.ctx);
@@ -39,13 +39,14 @@ class Game {
         let shiba2 = new Shiba(this.ctx);
         this.shiba2 = shiba2;
         dogs.push(this.shiba2);
-        this.dogs = dogs.slice(0, this.difficulty.dogs);
+        this.dogs = dogs;
 
         let trees = [];
-        this.trees = trees;
         for (let i = 0; i < this.difficulty.trees; i++) {
-            this.trees.push(new Tree(this.ctx));
+            let tree = new Tree(this.ctx);
+            trees.push(tree);
         };
+        this.trees = trees;
 
         this.draw = this.draw.bind(this);
         this.clickModalStart = this.clickModalStart.bind(this);
@@ -61,14 +62,14 @@ class Game {
         const hardButton = document.getElementById('hard-button');
         this.hardButton = hardButton;
 
-        easyButton.addEventListener('click', () => {
-            return this.difficulty = DIFFICULTY.easy;
+        this.easyButton.addEventListener('click', () => {
+            this.difficulty = DIFFICULTY.easy;
         })
-        mediumButton.addEventListener('click', () => {
-            return this.difficulty = DIFFICULTY.medium;
+        this.mediumButton.addEventListener('click', () => {
+            this.difficulty = DIFFICULTY.medium;
         })
-        hardButton.addEventListener('click', () => {
-            return this.difficulty = DIFFICULTY.hard;
+        this.hardButton.addEventListener('click', () => {
+            this.difficulty = DIFFICULTY.hard;
         })
 
         this.startModal = document.getElementById('modal');
@@ -97,7 +98,7 @@ class Game {
     }
 
     drawTrees() {
-        for (let i = 0; i < this.trees.length; i++) {
+        for (let i = 0; i < this.difficulty.trees; i++) {
             this.trees[i].drawTree();
         };
     }
@@ -105,7 +106,7 @@ class Game {
     drawDogs() {
         for (let i = 0; i < this.difficulty.dogs; i++) {
             let dog = this.dogs[i]
-            dog.render();
+            dog.drawDog();
             dog.randomMove();
         };
     }
@@ -119,6 +120,7 @@ class Game {
         this.player.drawCorgi();
         this.drawScore();
         this.drawLives();
+        this.drawMode();
         this.didCollide();
         this.lostFrisbee();
         this.stopGame();
@@ -129,15 +131,30 @@ class Game {
     }
 
     drawScore() {
-        this.ctx.font = "16px Wendy One";
+        this.ctx.font = "20px Wendy One";
         this.ctx.fillStyle = "black";
-        this.ctx.fillText("Score: " + this.score, 20, 20);
+        this.ctx.fillText("Score:  " + this.score, 20, 25);
     }
 
     drawLives() {
-        this.ctx.font = "16px Wendy One";
+        this.ctx.font = "20px Wendy One";
         this.ctx.fillStyle = "black";
-        this.ctx.fillText("Frisbees Left: " + this.frisbees, 100, 20);
+        this.ctx.fillText("Frisbees Left:  " + this.frisbees, 120, 25);
+    }
+
+    drawMode() {
+        let difficulty = 'Hard';
+        if (this.difficulty === DIFFICULTY.easy) {
+            difficulty = 'Easy';
+        } else if (this.difficulty === DIFFICULTY.medium) {
+            difficulty = 'Medium';
+        } else {
+            difficulty = 'Hard';
+        }
+
+        this.ctx.font = "20px Wendy One";
+        this.ctx.fillStyle = "black";
+        this.ctx.fillText("Difficulty:   " + difficulty, 720, 25);
     }
 
     lostFrisbee() {
@@ -162,10 +179,10 @@ class Game {
 
     obstacleCollision() {
         for (let i = 0; i < this.trees.length; i++) {
-            if ((this.player.mousePos.x > this.trees[i].treePos.x - 20
-                && this.player.mousePos.x < this.trees[i].treePos.x + 5) &&
-                (this.player.mousePos.y > this.trees[i].treePos.y - 20
-                    && this.player.mousePos.y < this.trees[i].treePos.y + 5)) {
+            if ((this.player.mousePos.x > this.trees[i].xPos - 20
+                && this.player.mousePos.x < this.trees[i].xPos + 5) &&
+                (this.player.mousePos.y > this.trees[i].yPos - 20
+                    && this.player.mousePos.y < this.trees[i].yPos + 5)) {
                         return true;
                     }
         }
@@ -173,9 +190,9 @@ class Game {
             if ((this.player.mousePos.x > this.dogs[i].xPos - 20
                 && this.player.mousePos.x < this.dogs[i].xPos + 5) &&
                 (this.player.mousePos.y > this.dogs[i].yPos - 20
-                && this.player.mousePos.y < this.dogs[i].yPos + 5)) {
-                return true;
-            }
+                    && this.player.mousePos.y < this.dogs[i].yPos + 5)) {
+                        return true;
+                    }
         }
     }
 

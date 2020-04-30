@@ -1,9 +1,9 @@
 class Dog {
     constructor(ctx) {
         this.ctx = ctx;
-        let xPos = Math.floor(Math.random() * 700 + 100);
+        let xPos = Math.floor(Math.random() * 600 + 100);
         this.xPos = xPos;
-        let yPos = Math.floor(Math.random() * 550);
+        let yPos = Math.floor(Math.random() * 500 + 50);
         this.yPos = yPos;
     }
 
@@ -15,7 +15,7 @@ class Dog {
         if (this.yPos) return this.yPos;
     }
 
-    render() {
+    drawDog() {
         this.ctx.drawImage(this.image, this.xPos, this.yPos, 60, 60)
     }
 
