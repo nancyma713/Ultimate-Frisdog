@@ -22,10 +22,8 @@ class Corgi {
     mouseMoveHandler() {
         this.canvas.addEventListener('mousemove',
             (e) => {
-                // debugger
                 this.mousePos.x = e.clientX - this.canvas.offsetLeft - 80;
-                this.mousePos.y = e.clientY - this.canvas.offsetTop - 80;
-                // debugger
+                this.mousePos.y = e.clientY - this.canvas.offsetTop - 120;
                 
                 this.drawCorgi();
             })
@@ -33,11 +31,8 @@ class Corgi {
 
     drawCorgi() {
         this.ctx.drawImage(this.image, this.mousePos.x, this.mousePos.y, this.width, this.height);
-        // debugger
     }
 
 }
-
-
 
 export default Corgi;

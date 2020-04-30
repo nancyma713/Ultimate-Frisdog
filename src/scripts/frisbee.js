@@ -13,8 +13,6 @@ class Frisbee {
             dx: 1,
             dy: Math.random() * (1) + (-0.5)
         }
-        
-        // this.drawFrisbee();
     }
     
     drawFrisbee() {

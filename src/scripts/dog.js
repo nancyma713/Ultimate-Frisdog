@@ -16,13 +16,7 @@ class Dog {
     }
 
     render() {
-        this.ctx.drawImage(
-            this.image,
-            this.xPos,
-            this.yPos,
-            60,
-            60
-        )
+        this.ctx.drawImage(this.image, this.xPos, this.yPos, 60, 60)
     }
 
     move(dx, dy) {
@@ -46,8 +40,8 @@ class Dog {
     }
 
     randomMove() {
-        let dx = Math.random() * 1;
-        let dy = Math.random() * 1;
+        let dx = Math.random() * 10 - 5;
+        let dy = Math.random() * 10 - 5;
         if (this.checkValidMove(dx, dy)) {
             this.move(dx, dy);
         } else {

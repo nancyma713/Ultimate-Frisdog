@@ -1,23 +1,17 @@
 # Ultimate Frisdog
 
 ## Background and Overview
-You're out at the dog park with your human Master and want to show off your
-frisbee-catching skills despite your short legs! It's a beautiful day out so
-there are a lot of other dogs in the park and cars on the road nearby. You want
-to catch as many frisbees as possible or else your Master will want to go home.
-Avoid other dogs and obstacles in the dog park as you run to catch the frisbee,
-but don't let it fly out of the dog park or a car will run over your precious
-toy.
+You're out at the dog park with your human and want to show off your frisbee-catching skills despite your short legs!
 
-When the frisbee flies out of the dog park, it's game over! You have three
-chances not to collide with any obstacles.
+Use your cursor to catch as many frisbees as possible or else your human will want to go home. Avoid other dogs and obstacles in the park, and don't let your frisbee fly out to the left or a car will run over your precious toy. Mysterious winds blow from north and south of the park, so watch out!
+
+You only have three frisbees. If you run into a tree or another dog, it's game over!
 
 ## Functionality and MVPs
 
 In Ultimate Frisdog, players will be able to:
 1. Start, pause, or reset the game.
-2. Choose a difficulty setting, which will impact the speed of the frisbee and
-the number of obstacles in the dog park.
+2. Choose a difficulty setting, which will impact the number of obstacles in the dog park.
 3. Control their corgi character using mouse movements.
 
 In addition, this project includes:

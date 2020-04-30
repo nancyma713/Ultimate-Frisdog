@@ -1,4 +1,3 @@
-import Dog from "./dog";
 import Corgi from "./corgi";
 import Frisbee from "./frisbee";
 import Tree from "./tree";
@@ -14,11 +13,13 @@ class Game {
         this.score = 0;
         this.frisbees = 3;
         this.gameOver = false;
-        this.difficulty = {
+
+        const DIFFICULTY = {
             easy: { trees: 1, dogs: 2 },
             medium: { trees: 2, dogs: 3 },
-            hard: { trees: 3, dogs: 4} 
-        };
+            hard: { trees: 3, dogs: 4 }
+        }
+        this.difficulty = DIFFICULTY.hard;
         
         let frisbee = new Frisbee(this.ctx);
         this.frisbee = frisbee;
@@ -26,11 +27,6 @@ class Game {
         this.player = player;
 
         let dogs = [];
-        this.dogs = dogs;
-        // for (let i = 0; i < this.difficulty.hard.dogs; i++) {
-        //     this.dogs.push(new Shiba(this.ctx));
-        // };
-
         let borderCollie = new BorderCollie(this.ctx);
         this.borderCollie = borderCollie;
         dogs.push(this.borderCollie);
@@ -40,10 +36,14 @@ class Game {
         let shiba = new Shiba(this.ctx);
         this.shiba = shiba;
         dogs.push(this.shiba);
+        let shiba2 = new Shiba(this.ctx);
+        this.shiba2 = shiba2;
+        dogs.push(this.shiba2);
+        this.dogs = dogs.slice(0, this.difficulty.dogs);
 
         let trees = [];
         this.trees = trees;
-        for (let i = 0; i < this.difficulty.hard.trees; i++) {
+        for (let i = 0; i < this.difficulty.trees; i++) {
             this.trees.push(new Tree(this.ctx));
         };
 
@@ -54,6 +54,23 @@ class Game {
     }
 
     setupControls() {
+        const easyButton = document.getElementById('easy-button');
+        this.easyButton = easyButton;
+        const mediumButton = document.getElementById('medium-button');
+        this.mediumButton = mediumButton;
+        const hardButton = document.getElementById('hard-button');
+        this.hardButton = hardButton;
+
+        easyButton.addEventListener('click', () => {
+            return this.difficulty = DIFFICULTY.easy;
+        })
+        mediumButton.addEventListener('click', () => {
+            return this.difficulty = DIFFICULTY.medium;
+        })
+        hardButton.addEventListener('click', () => {
+            return this.difficulty = DIFFICULTY.hard;
+        })
+
         this.startModal = document.getElementById('modal');
         this.startModal.onclick = this.clickModalStart.bind(this);
     }
@@ -84,15 +101,21 @@ class Game {
             this.trees[i].drawTree();
         };
     }
+
+    drawDogs() {
+        for (let i = 0; i < this.difficulty.dogs; i++) {
+            let dog = this.dogs[i]
+            dog.render();
+            dog.randomMove();
+        };
+    }
     
     draw() {
         this.ctx.clearRect(0, 0, 900, 600);
         this.game = requestAnimationFrame(this.draw);
         this.drawTrees();
         this.frisbee.drawFrisbee();
-        this.borderCollie.render();
-        this.husky.render();
-        this.shiba.render();
+        this.drawDogs();
         this.player.drawCorgi();
         this.drawScore();
         this.drawLives();
