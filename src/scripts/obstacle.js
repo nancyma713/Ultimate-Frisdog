@@ -1,4 +1,4 @@
-class Dog {
+class Obstacle {
     constructor(ctx) {
         this.ctx = ctx;
         let xPos = Math.floor(Math.random() * 600 + 100);
@@ -6,7 +6,7 @@ class Dog {
         let yPos = Math.floor(Math.random() * 500 + 50);
         this.yPos = yPos;
 
-        this.drawDog = this.drawDog.bind(this);
+        this.drawObstacle = this.drawObstacle.bind(this);
         this.move = this.move.bind(this);
         this.randomMove = this.randomMove.bind(this);
     }
@@ -19,7 +19,7 @@ class Dog {
         if (this.yPos) return this.yPos;
     }
 
-    drawDog() {
+    drawObstacle() {
         this.ctx.drawImage(this.image, this.xPos, this.yPos, 60, 60)
     }
 
@@ -44,8 +44,8 @@ class Dog {
     }
 
     randomMove() {
-        let dx = Math.random() * 6 - 3;
-        let dy = Math.random() * 6 - 3;
+        let dx = Math.random() * 4 - 2;
+        let dy = Math.random() * 4 - 2;
         if (this.checkValidMove(dx, dy)) {
             this.move(dx, dy);
         } else {
@@ -55,4 +55,4 @@ class Dog {
 
 }
 
-export default Dog;
+export default Obstacle;

@@ -1,19 +1,17 @@
-class Tree {
+import Obstacle from './obstacle';
+
+class Tree extends Obstacle {
     constructor(ctx) {
+        super(ctx);
         this.ctx = ctx;
         const image = new Image();
         image.src = 'src/assets/images/tree.png';
         this.image = image;
-        let xPos = Math.floor(Math.random() * 600 + 100);
-        this.xPos = xPos;
-        let yPos = Math.floor(Math.random() * 500 + 50);
-        this.yPos = yPos;
+        this.height = 60;
+        this.width = 50;
+        this.xPos = this.getXPos();
+        this.yPos = this.getYPos();
     }
-
-    drawTree() {
-        this.ctx.drawImage(this.image, this.xPos, this.yPos, 50, 50);
-    }
-
 }
 
 export default Tree;

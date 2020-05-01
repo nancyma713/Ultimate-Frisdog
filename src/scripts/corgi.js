@@ -29,6 +29,11 @@ class Corgi {
             })
     }
 
+    resetCorgi() {
+        this.mousePos.x = 0;
+        this.mousePos.y = 300;
+    }
+
     drawCorgi() {
         this.ctx.drawImage(this.image, this.mousePos.x, this.mousePos.y, this.width, this.height);
     }

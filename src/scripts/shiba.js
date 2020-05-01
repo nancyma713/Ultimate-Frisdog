@@ -1,6 +1,6 @@
-import Dog from './dog';
+import Obstacle from './obstacle';
 
-class Shiba extends Dog {
+class Shiba extends Obstacle {
     constructor(ctx) {
         super(ctx);
         this.ctx = ctx;
