@@ -18,6 +18,7 @@ class Game {
         this.score = 0;
         this.frisbees = 3;
         this.gameOver = false;
+        this.musicPlaying = true;
 
         this.difficulty = DIFFICULTY.hard;
         
@@ -49,9 +50,13 @@ class Game {
         };
         this.trees = trees;
 
+        let music = new Audio('src/assets/sounds/music.mp3');
+        this.music = music;
+
         this.draw = this.draw.bind(this);
         this.clickModalStart = this.clickModalStart.bind(this);
         this.stopGame = this.stopGame.bind(this);
+        this.playMusic = this.playMusic.bind(this);
         this.setupControls();
     }
 
@@ -63,6 +68,7 @@ class Game {
         const hardButton = document.getElementById('hard-button');
         this.hardButton = hardButton;
 
+        
         this.easyButton.addEventListener('click', () => {
             this.difficulty = DIFFICULTY.easy;
         })
@@ -72,13 +78,43 @@ class Game {
         this.hardButton.addEventListener('click', () => {
             this.difficulty = DIFFICULTY.hard;
         })
+        
+        this.muteButton = document.getElementById('mute-music');
+        this.muteButton.addEventListener('click', () => {
+            this.musicPlaying = false;
+        })
+        this.playButton = document.getElementById('play-music');
+        this.playButton.addEventListener('click', () => {
+            this.musicPlaying = true;
+        })
 
         this.startModal = document.getElementById('modal');
         this.startModal.onclick = this.clickModalStart.bind(this);
     }
 
+    // toggleMusic() {
+    //     if (this.musicPlaying === true) {
+    //         this.musicPlaying = false;
+    //     } else {
+    //         this.musicPlaying = true;
+    //     }
+    //     return this.musicPlaying;
+    // }
+
+
+    playMusic() {
+        if (this.musicPlaying) {
+            this.music.pause();
+            this.music.currentTime = 0;
+            this.music.play();
+        } else {
+            this.music.pause();
+        }
+    }
+
     clickModalStart(e) {
         e.preventDefault();
+        this.playMusic();
         this.score = 0;
         this.frisbees = 3;
         this.gameOver = false;
