@@ -70,8 +70,20 @@ body {
 
 .right img {
     align-self: center;
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
+    border: 0.5px solid black;
+    box-shadow: 2px 2px 5px white;
+    border-radius: 50%;
+    background-color: black;
+    transition: 0.5s;
+}
+
+.right img:hover {
+    cursor: pointer;
+    background-color: white;
+    border: 0.5px solid white;
+    box-shadow: 2px 2px 5px black;
 }
 
 .right a:hover {
@@ -116,16 +128,6 @@ body {
 
 .fa-bone:hover {
     color: rgba(255, 255, 255, 0.759);
-}
-
-.fa-arrow-left {
-    padding-right: 10px;
-}
-
-.check-instr {
-    margin-bottom: 30px;
-    font-size: 20px;
-    color: rgba(0, 0, 0, 0.623);
 }
 
 #click-start {

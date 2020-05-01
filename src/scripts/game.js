@@ -89,6 +89,7 @@ class Game {
 
     stopGame() {
         if (this.gameOver) {
+            this.frisbee.frisbeeMove.dx = 1;
             this.startModal.innerHTML = "Time to go home for today! <br>" + "<br> <i class='fas fa-paw'></i> <br>" + "Click to fast-forward to tomorrow and play again!"
             this.startModal.classList.remove('close-modal');
             this.startModal.classList.add('open-modal');
@@ -154,14 +155,14 @@ class Game {
 
         this.ctx.font = "20px Wendy One";
         this.ctx.fillStyle = "black";
-        this.ctx.fillText("Difficulty:   " + difficulty, 720, 25);
+        this.ctx.fillText("Difficulty:   " + difficulty, 680, 25);
     }
 
     lostFrisbee() {
         if (this.frisbee.frisbeePos.x > 905) {
             this.frisbees--;
             this.frisbee.reset();
-            setTimeout(this.draw, 500);
+            this.draw;
         }
     }
 
@@ -169,7 +170,7 @@ class Game {
         if (this.frisbeeCollision()) {
             this.score++;
             this.frisbee.reset();
-            setTimeout(this.draw, 1500);
+            this.draw;
         }
         
         if (this.obstacleCollision()) {

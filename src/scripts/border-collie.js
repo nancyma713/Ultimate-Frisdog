@@ -5,7 +5,7 @@ class BorderCollie extends Dog {
         super(ctx);
         this.ctx = ctx;
         const image = new Image;
-        image.src = "src/assets/images/border-collie.png";
+        image.src = "src/assets/images/brown-dog.png";
         this.image = image;
         this.height = 60;
         this.width = 60;

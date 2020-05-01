@@ -5,6 +5,10 @@ class Dog {
         this.xPos = xPos;
         let yPos = Math.floor(Math.random() * 500 + 50);
         this.yPos = yPos;
+
+        this.drawDog = this.drawDog.bind(this);
+        this.move = this.move.bind(this);
+        this.randomMove = this.randomMove.bind(this);
     }
 
     getXPos() {

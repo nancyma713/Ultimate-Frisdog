@@ -13,6 +13,8 @@ class Frisbee {
             dx: 1,
             dy: Math.random() * (1) + (-0.5)
         }
+
+        this.drawFrisbee = this.drawFrisbee.bind(this);
     }
     
     drawFrisbee() {
@@ -35,9 +37,7 @@ class Frisbee {
         this.frisbeePos.x = this.frisbeeRadius;
         this.frisbeePos.y = Math.floor(Math.random() * 500 + 50);
         this.frisbeeMove.dy = Math.random() * (1) + (-0.5);
-        // debugger
-        this.frisbeeMove.dx = 1
-        // debugger
+        this.frisbeeMove.dx += 0.5;
     }
 
 }
