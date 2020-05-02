@@ -188,7 +188,7 @@ class Game {
     }
 
     obstacleCollision() {
-        for (let i = 0; i < this.trees.length; i++) {
+        for (let i = 0; i < this.difficulty.trees; i++) {
             if ((this.player.mousePos.x > this.trees[i].xPos - 40
                 && this.player.mousePos.x < this.trees[i].xPos + 40) &&
                 (this.player.mousePos.y > this.trees[i].yPos - 40
@@ -196,7 +196,7 @@ class Game {
                         return true;
                     }
         }
-        for (let i = 0; i < this.dogs.length; i++) {
+        for (let i = 0; i < this.difficulty.dogs; i++) {
             if ((this.player.mousePos.x > this.dogs[i].xPos - 40
                 && this.player.mousePos.x < this.dogs[i].xPos + 40) &&
                 (this.player.mousePos.y > this.dogs[i].yPos - 40
