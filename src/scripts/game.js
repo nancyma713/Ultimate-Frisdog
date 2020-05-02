@@ -89,10 +89,16 @@ class Game {
     }
 
     stopGame() {
+        let caughtFrisbees = 'frisbees';
+        if (this.score === 1) {
+            caughtFrisbees = 'frisbee';
+        }
+
         if (this.gameOver) {
+            cancelAnimationFrame(this.draw);
             this.frisbee.frisbeeMove.dx = 1;
             this.player.resetCorgi();
-            this.startModal.innerHTML = "Time to go home for today! <br>" + "<br> <i class='fas fa-paw'></i> <br>" + "Click to fast-forward to tomorrow and play again!"
+            this.startModal.innerHTML = "You caught " + this.score + " " + caughtFrisbees + " today! <br>" + "<br> <i class='fas fa-paw'></i> <br>" + "Click to fast-forward to tomorrow and play again!"
             this.startModal.classList.remove('close-modal');
             this.startModal.classList.add('open-modal');
             this.ctx.clearRect(0, 0, 900, 600);
