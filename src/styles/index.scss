@@ -13,6 +13,7 @@ body {
     font-size: 60px;
     display: flex;
     justify-content: center;
+    text-shadow: 2px 2px 2px white;
 }
 
 .main-container {
@@ -27,6 +28,8 @@ body {
 
 .left {
     background-color: white;
+    border-radius: 50px;
+    box-shadow: 3px 3px 5px black;
     padding: 15px;
     flex: 2;
     margin-right: 20px;
@@ -35,6 +38,8 @@ body {
 .left h3 {
     color: rgb(184, 140, 99);
     font-size: 30px;
+    text-align: center;
+    text-shadow: 1px 0px 2px black;
 }
 
 .left p {
@@ -105,6 +110,7 @@ body {
     color: snow;
     font-size: 50px;
     z-index: 100;
+    box-shadow: 3px 3px 10px black;
 }
 
 .close-modal {
@@ -140,7 +146,9 @@ body {
 .difficulty-mode {
     display: flex;
     flex-direction: column;
+    border-radius: 30px;
     margin: 20px 0px 50px 0px;
+    padding: 10px 0px;
     box-shadow: 3px 3px 5px;
     background-image: linear-gradient(to right,rgb(211, 156, 104), rgb(209, 146, 87), rgb(196, 128, 64), rgb(182, 106, 35),  rgb(161, 103, 49), rgb(143, 86, 32));
 }
