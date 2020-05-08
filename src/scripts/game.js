@@ -208,9 +208,9 @@ class Game {
 
     frisbeeCollision() {
         if ((this.player.mousePos.x > this.frisbee.frisbeePos.x - 80
-                && this.player.mousePos.x < this.frisbee.frisbeePos.x + 30) && 
+                && this.player.mousePos.x < this.frisbee.frisbeePos.x) && 
             (this.player.mousePos.y > this.frisbee.frisbeePos.y - 80
-                && this.player.mousePos.y < this.frisbee.frisbeePos.y + 30)) {
+                && this.player.mousePos.y < this.frisbee.frisbeePos.y)) {
             return true;
         }
     }
