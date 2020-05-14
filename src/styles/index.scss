@@ -9,6 +9,21 @@ body {
     margin: 2%;
 }
 
+.fa-sun {
+    position: absolute;
+    left: 20%;
+    top: 3%;
+    font-size: 5em;
+    color: yellow;
+    text-shadow: 5px 5px 15px;
+    transition: 0.5s;
+}
+
+.fa-sun:hover {
+    transform: rotate(10deg);
+    text-shadow: 5px 5px 20px;
+}
+
 .outer-container h1 {
     font-size: 60px;
     display: flex;
