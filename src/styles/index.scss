@@ -12,7 +12,7 @@ body {
 .fa-sun {
     position: absolute;
     left: 20%;
-    top: 3%;
+    top: -15%;
     font-size: 5em;
     color: yellow;
     text-shadow: 5px 5px 15px;
@@ -60,6 +60,11 @@ body {
 .left p {
     padding-top: 15px;
     font-size: 18px;
+}
+
+#paw {
+    font-size: 16px;
+    color: rgb(184, 140, 99);
 }
 
 .game-screen {
@@ -183,4 +188,15 @@ body {
 .difficulty-mode button:focus {
     color: black;
     cursor: pointer;
+}
+
+@media screen and (max-width: 1360px) {
+    .left h3 {
+        font-size: 26px;
+    }
+
+    .left p {
+        padding-top: 12px;
+        font-size: 16px;
+    }
 }
