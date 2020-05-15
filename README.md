@@ -1,5 +1,7 @@
 # Ultimate Frisdog
 
+[Ultimate Frisdog Live](https://nancyma713.github.io/Ultimate-Frisdog/)
+
 ## Background and Overview
 You're out at the dog park with your human and want to show off your frisbee-catching skills despite your short legs!
 
@@ -22,7 +24,7 @@ In addition, this project includes:
 
 Thia game consists of a single screen containing instructions on how to
 play, the gameplay area, and nav links to my GitHub, LinkedIn, and Angellist. 
-The gameplay area will consist of a indicator for the current score (number of 
+The gameplay area consists of a indicator for the current score (number of 
 frisbees caught) and frisbees left, as well as the difficulty setting.
 
 ![alt_text](src/assets/images/wireframe.png "wireframes")
