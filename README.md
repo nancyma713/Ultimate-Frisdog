@@ -20,7 +20,7 @@ In addition, this project includes:
 
 ## Wireframes
 
-Thia game will consist of a single screen containing instructions on how to
+Thia game consists of a single screen containing instructions on how to
 play, the gameplay area, and nav links to my GitHub, LinkedIn, and Angellist. 
 The gameplay area will consist of a indicator for the current score (number of 
 frisbees caught) and frisbees left, as well as the difficulty setting.
@@ -28,28 +28,63 @@ frisbees caught) and frisbees left, as well as the difficulty setting.
 ![alt_text](src/assets/images/wireframe.png "wireframes")
 
 ## Architecture and Technology
-This project will be implemented with the following technologies:
+This project is implemented with the following technologies:
 - JavaScript for game logic
 - HTML5 Canvas to render the game
 
-Main scripts will include:
-- ```game.js```: holds game logic - will create and update the game
+Main scripts include:
+- ```game.js```: holds game logic - creates and updates the game
 - ```corgi.js```: constructs the ```Corgi``` player object
-- ```tree.js```: constructs stationary ```Tree``` obstacle object
-- ```dog.js```: constructs moving ```Dog``` obstacle object
+- ```obstacle.js```: constructs stationary and mobile obstacle objects
+- ```frisbee.js```: holds logic for the moving ```Frisbee```
 
-## Implementation Timeline
+## Challenges
+Implementing the different collision logic (colliding with a frisbee is good but with an obstacle would lose the game) was really interesting. The main function ```didCollide``` checks for each case, and updates the game as necessary.
 
-**Day 1**: Set up basic files, research and familiarize with Canvas. Create
-gameplay background.
+```javascript
+didCollide() {
+        if (this.frisbeeCollision()) {
+            this.score++;
+            this.frisbee.reset();
+            this.draw;
+        }
+        
+        if (this.obstacleCollision()) {
+            this.gameOver = true;
+        }
+    }
 
-**Day 2**: Set up basic game logic and sprites.
+    obstacleCollision() {
+        for (let i = 0; i < this.difficulty.trees; i++) {
+            if ((this.player.mousePos.x > this.trees[i].xPos - 40
+                && this.player.mousePos.x < this.trees[i].xPos + 40) &&
+                (this.player.mousePos.y > this.trees[i].yPos - 40
+                    && this.player.mousePos.y < this.trees[i].yPos + 40)) {
+                        return true;
+                    }
+        }
+        for (let i = 0; i < this.difficulty.dogs; i++) {
+            if ((this.player.mousePos.x > this.dogs[i].xPos - 40
+                && this.player.mousePos.x < this.dogs[i].xPos + 40) &&
+                (this.player.mousePos.y > this.dogs[i].yPos - 40
+                    && this.player.mousePos.y < this.dogs[i].yPos + 40)) {
+                        return true;
+                    }
+        }
+    }
 
-**Day 3**: Dive deeper into game logic. Implement different difficulty settings.
-
-**Day 4**: Work on high score board and save users' high scores. Finalize 
-styling and layout.
+    frisbeeCollision() {
+        if ((this.player.mousePos.x > this.frisbee.frisbeePos.x - 80
+                && this.player.mousePos.x < this.frisbee.frisbeePos.x) && 
+            (this.player.mousePos.y > this.frisbee.frisbeePos.y - 80
+                && this.player.mousePos.y < this.frisbee.frisbeePos.y)) {
+            return true;
+        }
+    }
+```
 
 ### Future Bonus Features
 1. Add more difficulty settings and more variability in settings
 2. Player can pick up bones on the ground to replenish energy
+
+Music from [Nintendo](https://www.nintendo.com).
