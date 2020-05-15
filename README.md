@@ -9,22 +9,21 @@ You only have three frisbees. If you run into a tree or another dog, it's game o
 
 ## Functionality and MVPs
 
-In Ultimate Frisdog, players will be able to:
-1. Start, pause, or reset the game.
+In Ultimate Frisdog, players are able to:
+1. Start and reset the game.
 2. Choose a difficulty setting, which will impact the number of obstacles in the dog park.
 3. Control their corgi character using mouse movements.
 
 In addition, this project includes:
-1. A High-scorers board
-2. A production README
+1. Increasing frisbee speeds with each frisbee thrown.
+2. A production README.
 
 ## Wireframes
 
 Thia game will consist of a single screen containing instructions on how to
-play, a high-scorer's board, the gameplay area, and nav links to my GitHub,
-LinkedIn, and Angellist. The gameplay area will consist of a indicator for the
-current score (number of frisbees caught) and chances left, as well as the
-difficulty setting.
+play, the gameplay area, and nav links to my GitHub, LinkedIn, and Angellist. 
+The gameplay area will consist of a indicator for the current score (number of 
+frisbees caught) and frisbees left, as well as the difficulty setting.
 
 ![alt_text](src/assets/images/wireframe.png "wireframes")
 
@@ -35,7 +34,7 @@ This project will be implemented with the following technologies:
 
 Main scripts will include:
 - ```game.js```: holds game logic - will create and update the game
-- ```corgi.js```: constructs the ```Corgi``` object
+- ```corgi.js```: constructs the ```Corgi``` player object
 - ```tree.js```: constructs stationary ```Tree``` obstacle object
 - ```dog.js```: constructs moving ```Dog``` obstacle object
 
@@ -52,5 +51,5 @@ gameplay background.
 styling and layout.
 
 ### Future Bonus Features
-1. Add more difficulty settings and time countdown
-2. Can pick up bones on the ground to replenish energy
+1. Add more difficulty settings and more variability in settings
+2. Player can pick up bones on the ground to replenish energy

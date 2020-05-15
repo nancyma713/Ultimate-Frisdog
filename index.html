@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Ultimate Frisdog" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://nancyma713.github.io/Ultimate-Frisdog/" />
+    <meta property="og:image" content="ultimate-frisdog.png" />
+    <meta property="og:description" content="Play fetch in the dog park!" />
+    <link rel="icon" href="src/assets/images/favicon.png" />
     <link href="https://fonts.googleapis.com/css?family=Wendy+One&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/0decca8e2b.js" crossorigin="anonymous"></script>
     <script src="./dist/main.js"></script>
@@ -11,7 +17,7 @@
 </head>
 <body>
     <div class="outer-container">
-        <h1>Ultimate Frisd<img src="src/assets/images/corgiicon.png" alt="corgiicon" width=40 height=70>g</h1>
+        <h1></i>Ultimate Frisd<img src="src/assets/images/corgiicon.png" alt="corgiicon" width=40 height=70>g</h1>
         <div class="main-container">
             <aside class="left">
                 <div class="instructions">
@@ -25,15 +31,16 @@
                         </div>
                     </div>
                     <h3>How To Play</h3>
-                    <p>You're out at the dog park with your human and want to show off your frisbee-catching skills despite your short legs!</p>
+                    <p><i class="fas fa-paw" id="paw"></i>You're out at the dog park with your human and want to show off your frisbee-catching skills despite your short legs!</p>
                     
-                    <p>Use your cursor to catch as many frisbees as possible or else your human will want to go home. Avoid other dogs and obstacles in the park, and don't let your frisbee fly out to the left or a car will run over your precious toy. Mysterious winds blow from north and south of the park, so watch out!</p>
+                    <p><i class="fas fa-paw" id="paw"></i>Use your cursor to catch as many frisbees as possible or else your human will want to go home. Avoid other dogs and obstacles in the park, and don't let your frisbee fly out to the left or a car will run over your precious toy. Mysterious winds blow from north and south of the park, so watch out!</p>
                     
-                    <p>You only have three frisbees. If you run into a tree or another dog, it's game over!</p>
+                    <p><i class="fas fa-paw" id="paw"></i>You only have three frisbees. If you run into a tree or another dog, it's game over!</p>
                 </div>
             </aside>
             
             <main class="game-screen">
+                <i class="fas fa-sun"></i>
                 <div id='modal' class='open-modal'>
                     <i class="fas fa-bone"></i>
                     <div id="click-start">
@@ -41,6 +48,7 @@
                     </div>
                         <i class="fas fa-bone"></i>
                 </div>
+                <div id=park-view class="close-park-view"> Click to start!</div>
                 <canvas id="canvas-dog-park" width="900" height="600"></canvas>
             </main>
     
@@ -53,7 +61,7 @@
                 <a href='https://github.com/nancyma713'><i class="fab fa-github"></i></a>
                 <a href="https://www.linkedin.com/in/nancy-ma-68357275/"><i class="fab fa-linkedin"></i></a>
                 <a href="https://angel.co/u/nancy-ma"><i class="fab fa-angellist"></i></a>
-                <img src="src/assets/images/corgi.gif" alt="corgi">
+                <a href="https://nancyma713.github.io/"><img src="src/assets/images/corgi.gif" alt="corgi"></a>
             </div>
 
         </div>

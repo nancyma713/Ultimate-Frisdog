@@ -53,8 +53,10 @@ class Game {
         let music = new Audio('src/assets/sounds/music.mp3');
         this.music = music;
 
+        this.setup = this.setup.bind(this);
         this.draw = this.draw.bind(this);
         this.clickModalStart = this.clickModalStart.bind(this);
+        this.clickGameStart = this.clickGameStart.bind(this);
         this.stopGame = this.stopGame.bind(this);
         this.playMusic = this.playMusic.bind(this);
         this.setupControls();
@@ -90,6 +92,9 @@ class Game {
 
         this.startModal = document.getElementById('modal');
         this.startModal.onclick = this.clickModalStart.bind(this);
+
+        this.startGame = document.getElementById('park-view');
+        this.startGame.onclick = this.clickGameStart.bind(this);
     }
 
     // toggleMusic() {
@@ -120,15 +125,31 @@ class Game {
         this.gameOver = false;
         this.startModal.classList.remove('open-modal');
         this.startModal.classList.add('close-modal');
+        this.startGame.classList.remove('close-park-view');
+        this.startGame.classList.add('open-park-view');
         this.startModal.onclick = e => e.preventDefault();
+        this.setup();
+    }
+
+    clickGameStart(e) {
+        e.preventDefault();
+        this.startGame.classList.remove('open-park-view');
+        this.startGame.classList.add('close-park-view');
         this.draw();
     }
 
     stopGame() {
+        let caughtFrisbees = 'frisbees';
+        if (this.score === 1) {
+            caughtFrisbees = 'frisbee';
+        }
+
         if (this.gameOver) {
+            cancelAnimationFrame(this.setup);
+            cancelAnimationFrame(this.draw);
             this.frisbee.frisbeeMove.dx = 1;
             this.player.resetCorgi();
-            this.startModal.innerHTML = "Time to go home for today! <br>" + "<br> <i class='fas fa-paw'></i> <br>" + "Click to fast-forward to tomorrow and play again!"
+            this.startModal.innerHTML = "You caught " + this.score + " " + caughtFrisbees + " today! <br>" + "<br> <i class='fas fa-paw'></i> <br>" + "Click to fast-forward to tomorrow and play again!"
             this.startModal.classList.remove('close-modal');
             this.startModal.classList.add('open-modal');
             this.ctx.clearRect(0, 0, 900, 600);
@@ -150,24 +171,27 @@ class Game {
             dog.randomMove();
         };
     }
-    
-    draw() {
+
+    setup() {
         this.ctx.clearRect(0, 0, 900, 600);
-        this.game = requestAnimationFrame(this.draw);
-        this.frisbee.drawFrisbee();
+        requestAnimationFrame(this.setup);
         this.drawTrees();
         this.drawDogs();
-        this.player.drawCorgi();
         this.drawScore();
         this.drawLives();
         this.drawMode();
+    }
+    
+    draw() {
+        requestAnimationFrame(this.draw);
+        this.frisbee.drawFrisbee();
+        this.player.drawCorgi();
         this.didCollide();
         this.lostFrisbee();
         this.stopGame();
         if (this.frisbees === 0) {
             this.gameOver = true;
         }
-        
     }
 
     drawScore() {
@@ -218,7 +242,7 @@ class Game {
     }
 
     obstacleCollision() {
-        for (let i = 0; i < this.trees.length; i++) {
+        for (let i = 0; i < this.difficulty.trees; i++) {
             if ((this.player.mousePos.x > this.trees[i].xPos - 40
                 && this.player.mousePos.x < this.trees[i].xPos + 40) &&
                 (this.player.mousePos.y > this.trees[i].yPos - 40
@@ -226,7 +250,7 @@ class Game {
                         return true;
                     }
         }
-        for (let i = 0; i < this.dogs.length; i++) {
+        for (let i = 0; i < this.difficulty.dogs; i++) {
             if ((this.player.mousePos.x > this.dogs[i].xPos - 40
                 && this.player.mousePos.x < this.dogs[i].xPos + 40) &&
                 (this.player.mousePos.y > this.dogs[i].yPos - 40
@@ -238,9 +262,9 @@ class Game {
 
     frisbeeCollision() {
         if ((this.player.mousePos.x > this.frisbee.frisbeePos.x - 80
-                && this.player.mousePos.x < this.frisbee.frisbeePos.x + 30) && 
+                && this.player.mousePos.x < this.frisbee.frisbeePos.x) && 
             (this.player.mousePos.y > this.frisbee.frisbeePos.y - 80
-                && this.player.mousePos.y < this.frisbee.frisbeePos.y + 30)) {
+                && this.player.mousePos.y < this.frisbee.frisbeePos.y)) {
             return true;
         }
     }
