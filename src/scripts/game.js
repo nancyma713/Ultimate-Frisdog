@@ -51,6 +51,7 @@ class Game {
         this.trees = trees;
 
         let music = new Audio('src/assets/sounds/music.mp3');
+        music.loop = true;
         this.music = music;
 
         this.setup = this.setup.bind(this);
@@ -114,8 +115,6 @@ class Game {
     playMusic() {
         this.muteButton.classList.remove('active-button');
         this.playButton.classList.add('active-button');
-        this.music.pause();
-        this.music.currentTime = 0;
         this.music.play();
     }
 
