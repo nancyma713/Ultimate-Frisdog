@@ -72,54 +72,55 @@ class Game {
 
         
         this.easyButton.addEventListener('click', () => {
+            this.easyButton.classList.add('active-button');
+            this.mediumButton.classList.remove('active-button');
+            this.hardButton.classList.remove('active-button');
             this.difficulty = DIFFICULTY.easy;
         })
         this.mediumButton.addEventListener('click', () => {
+            this.easyButton.classList.remove('active-button');
+            this.mediumButton.classList.add('active-button');
+            this.hardButton.classList.remove('active-button');
             this.difficulty = DIFFICULTY.medium;
         })
         this.hardButton.addEventListener('click', () => {
+            this.easyButton.classList.remove('active-button');
+            this.mediumButton.classList.remove('active-button');
+            this.hardButton.classList.add('active-button');
             this.difficulty = DIFFICULTY.hard;
         })
         
         this.muteButton = document.getElementById('mute-music');
-        this.muteButton.addEventListener('click', () => {
-            this.musicPlaying = false;
-        })
+        this.muteButton.onclick = this.muteMusic.bind(this);
+    
         this.playButton = document.getElementById('play-music');
-        this.playButton.addEventListener('click', () => {
-            this.musicPlaying = true;
-        })
+        this.playButton.onclick = this.playMusic.bind(this);
 
         this.startModal = document.getElementById('modal');
         this.startModal.onclick = this.clickModalStart.bind(this);
 
         this.startGame = document.getElementById('park-view');
         this.startGame.onclick = this.clickGameStart.bind(this);
+
+        this.playMusic();
     }
 
-    // toggleMusic() {
-    //     if (this.musicPlaying === true) {
-    //         this.musicPlaying = false;
-    //     } else {
-    //         this.musicPlaying = true;
-    //     }
-    //     return this.musicPlaying;
-    // }
-
+    muteMusic() {
+        this.music.pause();
+        this.playButton.classList.remove('active-button');
+        this.muteButton.classList.add('active-button');
+    }
 
     playMusic() {
-        if (this.musicPlaying) {
-            this.music.pause();
-            this.music.currentTime = 0;
-            this.music.play();
-        } else {
-            this.music.pause();
-        }
+        this.muteButton.classList.remove('active-button');
+        this.playButton.classList.add('active-button');
+        this.music.pause();
+        this.music.currentTime = 0;
+        this.music.play();
     }
 
     clickModalStart(e) {
         e.preventDefault();
-        this.playMusic();
         this.score = 0;
         this.frisbees = 3;
         this.gameOver = false;

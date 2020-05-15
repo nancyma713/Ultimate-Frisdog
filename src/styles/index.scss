@@ -78,11 +78,12 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .right a {
     text-decoration: none;
-    font-size: 60px;
+    font-size: 50px;
     padding: 10px;
     color: black;
     align-self: center;
@@ -92,8 +93,8 @@ body {
 
 .right img {
     align-self: center;
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     border: 0.5px solid black;
     box-shadow: 2px 2px 5px white;
     border-radius: 50%;
@@ -182,10 +183,11 @@ body {
 }
 
 .difficulty-mode {
+    width: 8em;
     display: flex;
     flex-direction: column;
     border-radius: 30px;
-    margin: 20px 0px 50px 0px;
+    margin: 20px 0px 30px 0px;
     padding: 10px 0px;
     box-shadow: 3px 3px 5px;
     background-image: linear-gradient(to right,rgb(211, 156, 104), rgb(209, 146, 87), rgb(196, 128, 64), rgb(182, 106, 35),  rgb(161, 103, 49), rgb(143, 86, 32));
@@ -208,26 +210,42 @@ body {
     cursor: pointer;
 }
 
-<<<<<<< HEAD
 .music {
+    width: 4em;
     font-size: 20px;
-    color: rgb(184, 140, 99);
+    color: black;
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
-    padding: 5px;
-    border: 1px solid rgb(184, 140, 99);
-    box-shadow: 3px 3px 5px;
+    text-align: center;
+    padding: 12px;
+    background-image: linear-gradient(to right,rgb(211, 156, 104), rgb(209, 146, 87), rgb(196, 128, 64), rgb(182, 106, 35),  rgb(161, 103, 49), rgb(143, 86, 32));
+    box-shadow: 3px 3px 5px black;
 }
 
+
 #mute-music, #play-music {
+    padding-top: 4px;
     font-size: 16px;
+    color: white;
+    transition: 0.5s;
+}
+
+#play-music {
+    padding-top: 8px;
 }
 
 #mute-music:hover, #play-music:hover {
-    color: rgb(134, 76, 22);
+    color: black;
     cursor: pointer;
-=======
-@media screen and (max-width: 1360px) {
+}
+
+.active-button {
+    color: rgb(2, 107, 2) !important;
+    cursor: default !important;
+}
+
+@media screen and (max-width: 1380px) {
     .left h3 {
         font-size: 26px;
     }
@@ -236,5 +254,4 @@ body {
         padding-top: 12px;
         font-size: 16px;
     }
->>>>>>> master
 }
