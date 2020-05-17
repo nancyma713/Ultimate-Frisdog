@@ -30,20 +30,18 @@ class Frisbee {
         if (this.frisbeePos.y + this.frisbeeMove.dy > 550 || this.frisbeePos.y + this.frisbeeMove.dy < 50) {
             this.frisbeeMove.dy = -(this.frisbeeMove.dy / 10);
         }
-
     }
 
     reset() {
         this.frisbeePos.x = this.frisbeeRadius;
         this.frisbeePos.y = Math.floor(Math.random() * 500 + 50);
         this.frisbeeMove.dy = Math.random() * (1) + (-0.5);
-        if (this.frisbeeMove.dx < 15) {
+        if (this.frisbeeMove.dx < 20) {
             this.frisbeeMove.dx += 0.3;
-        } else if (this.frisbeeMove.dx >= 15 && this.frisbeeMove.dx < 25) {
+        } else if (this.frisbeeMove.dx >= 20 && this.frisbeeMove.dx < 30) {
             this.frisbeeMove.dx += 0.2;
-        } else if (this.frisbeeMove.dx >= 25 && this.frisbeeMove.dx < 35) {
+        } else if (this.frisbeeMove.dx >= 30 && this.frisbeeMove.dx < 35) {
             this.frisbeeMove.dx += 0.1;
-            
         }
     }
 

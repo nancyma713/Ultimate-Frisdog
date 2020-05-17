@@ -6,6 +6,8 @@ class Obstacle {
         let yPos = Math.floor(Math.random() * 500 + 50);
         this.yPos = yPos;
 
+        this.count = 0;
+
         this.drawObstacle = this.drawObstacle.bind(this);
         this.move = this.move.bind(this);
         this.randomMove = this.randomMove.bind(this);
@@ -44,13 +46,18 @@ class Obstacle {
     }
 
     randomMove() {
-        let dx = Math.random() * 4 - 2;
-        let dy = Math.random() * 4 - 2;
-        if (this.checkValidMove(dx, dy)) {
-            this.move(dx, dy);
+        if (this.count % 4 === 0) {
+            let dx = Math.random() * 10 - 5;
+            let dy = Math.random() * 10 - 5;
+            if (this.checkValidMove(dx, dy)) {
+                this.move(dx, dy);
+            } else {
+                this.randomMove();
+            }
         } else {
-            this.randomMove();
+            this.move(0, 0);
         }
+        this.count++;
     }
 
 }

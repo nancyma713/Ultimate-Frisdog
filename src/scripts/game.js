@@ -133,6 +133,7 @@ class Game {
 
     clickGameStart(e) {
         e.preventDefault();
+        this.frisbee.frisbeeMove.dx = 1;
         this.startGame.classList.remove('open-park-view');
         this.startGame.classList.add('close-park-view');
         this.draw();
@@ -145,9 +146,7 @@ class Game {
         }
 
         if (this.gameOver) {
-            cancelAnimationFrame(this.setup);
-            cancelAnimationFrame(this.draw);
-            this.frisbee.frisbeeMove.dx = 1;
+            this.frisbee.frisbeeMove.dx = 0;
             this.player.resetCorgi();
             this.startModal.innerHTML = "You caught " + this.score + " " + caughtFrisbees + " today! <br>" + "<br> <i class='fas fa-paw'></i> <br>" + "Click to fast-forward to tomorrow and play again!"
             this.startModal.classList.remove('close-modal');
@@ -174,23 +173,27 @@ class Game {
 
     setup() {
         this.ctx.clearRect(0, 0, 900, 600);
-        requestAnimationFrame(this.setup);
         this.drawTrees();
         this.drawDogs();
         this.drawScore();
         this.drawLives();
         this.drawMode();
+        const game = requestAnimationFrame(this.setup);
+        if (this.gameOver) {
+            this.cancelAnimationFrame(game);
+        }
     }
     
     draw() {
-        requestAnimationFrame(this.draw);
         this.frisbee.drawFrisbee();
         this.player.drawCorgi();
         this.didCollide();
         this.lostFrisbee();
         this.stopGame();
+        const game = requestAnimationFrame(this.draw);
         if (this.frisbees === 0) {
             this.gameOver = true;
+            this.cancelAnimationFrame(game);
         }
     }
 
