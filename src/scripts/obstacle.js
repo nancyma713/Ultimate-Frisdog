@@ -46,9 +46,9 @@ class Obstacle {
     }
 
     randomMove() {
-        if (this.count % 4 === 0) {
-            let dx = Math.random() * 10 - 5;
-            let dy = Math.random() * 10 - 5;
+        if (this.count % 10 === 0) {
+            let dx = Math.random() * 20 - 10;
+            let dy = Math.random() * 20 - 10;
             if (this.checkValidMove(dx, dy)) {
                 this.move(dx, dy);
             } else {

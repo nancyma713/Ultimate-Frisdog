@@ -52,7 +52,7 @@ class Game {
 
         let music = new Audio('src/assets/sounds/music.mp3');
         music.loop = true;
-        music.volume = 0.3;
+        music.volume = 0.2;
         this.music = music;
 
         this.setup = this.setup.bind(this);
