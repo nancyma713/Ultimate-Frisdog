@@ -52,6 +52,7 @@ class Game {
 
         let music = new Audio('src/assets/sounds/music.mp3');
         music.loop = true;
+        music.volume = 0.3;
         this.music = music;
 
         this.setup = this.setup.bind(this);
@@ -187,11 +188,12 @@ class Game {
     draw() {
         this.frisbee.drawFrisbee();
         this.player.drawCorgi();
-        this.didCollide();
         this.lostFrisbee();
+        this.didCollide();
         this.stopGame();
         const game = requestAnimationFrame(this.draw);
         if (this.frisbees === 0) {
+            this.frisbee.frisbeeMove.dx = 0;
             this.gameOver = true;
             this.cancelAnimationFrame(game);
         }
